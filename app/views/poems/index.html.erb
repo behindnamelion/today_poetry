@@ -1,0 +1,41 @@
+<% if user_signed_in? %>
+  <%= current_user.email %>
+  <%= link_to '로그아웃', destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to '로그인', new_user_session_path %>
+<% end %>
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Poems</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>제목</th>
+      <th>본문</th>
+      <th>쓰인해</th>
+      <th>올린이</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @poems.each do |poem| %>
+      <tr>
+        <td><%= poem.title %></td>
+        <td><%= poem.body %></td>
+        <td><%= poem.year %></td>
+        <td><%= poem.user.email %></td>
+        <td><%= link_to 'Show', poem %></td>
+        <td><%= link_to 'Edit', edit_poem_path(poem) %></td>
+        <td><%= link_to 'Destroy', poem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Poem', new_poem_path %>
