@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<% if @poem.picture.attached? %>
+  <p>
+    <%= image_tag @poem.picture %>
+  </p>
+<% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @poem.title %>
