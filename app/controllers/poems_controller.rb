@@ -1,6 +1,7 @@
 class PoemsController < ApplicationController
   before_action :set_poem, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /poems
   # GET /poems.json
@@ -73,4 +74,11 @@ class PoemsController < ApplicationController
     def poem_params
       params.require(:poem).permit(:title, :body, :year, :description)
     end
+    
+    def require_permission
+      if current_user != @poem.user
+        redirect_to root_path, notice: 'You don\'t have a permission for this post'
+      end
+    end
+
 end
