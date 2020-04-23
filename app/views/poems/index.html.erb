@@ -16,6 +16,7 @@
       <th>제목</th>
       <th>본문</th>
       <th>쓰인해</th>
+      <th>좋아요 수</th>
       <th>올린이</th>
       <th colspan="3"></th>
     </tr>
@@ -27,6 +28,7 @@
         <td><%= poem.title %></td>
         <td><%= poem.body %></td>
         <td><%= poem.year %></td>
+        <td><%= poem.liked_users.count %></td>
         <td><%= poem.user.email %></td>
         <td><%= link_to 'Show', poem %></td>
         <td><%= link_to 'Edit', edit_poem_path(poem) %></td>

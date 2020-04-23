@@ -4,4 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          has_many :poems
+         has_many :likes
+         has_many :liked_poems, through: :likes, source: :poem
 end

@@ -27,7 +27,7 @@ class PoemsController < ApplicationController
   # POST /poems.json
   def create
     @poem = Poem.new(poem_params)
-    @poem.user = current_user
+    @poem.user_id = current_user.id
 
     respond_to do |format|
       if @poem.save
