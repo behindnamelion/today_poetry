@@ -16,20 +16,21 @@
   <%= @poem.body %>
 </p>
 
-<p>
+<p id="like_count">
   <strong>Like:</strong>
-  <%= @poem.liked_users.count %>
+  <span><%= @poem.liked_users.count %></span>
 </p>
 
-<% if poem_liked_by_user?(@poem, current_user) %>
-  <p>
-    <%= link_to "❤️", "/poems/#{@poem.id}/likes", method: :post %>
+<% if user_signed_in? %>
+  <p id="like_heart">
+      <%= link_to "#{poem_liked_by_user?(@poem, current_user) ? "❤️":"🤍" }","/poems/#{@poem.id}/likes", method: :post, remote: true %>
   </p>
 <% else %>
   <p>
-    <%= link_to "🤍", "/poems/#{@poem.id}/likes", method: :post %>
+    <%= link_to "🤍","/poems/#{@poem.id}/likes", method: :post %>
   </p>
 <% end %>
+
 
 <p>
   <strong>Year:</strong>
