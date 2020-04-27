@@ -39,6 +39,9 @@
 </table>
 <br>
 <%== pagy_bootstrap_nav(@pagy) %>
+<script>
+    Pagy.init()
+</script>
 
 <br>
 <%= link_to '새로운 시 올리기', new_poem_path %>
