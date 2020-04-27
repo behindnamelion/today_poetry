@@ -6,7 +6,7 @@ class PoemsController < ApplicationController
   # GET /poems
   # GET /poems.json
   def index
-    @pagy, @poems = pagy(Poem.all, items:10)
+    @pagy, @poems = pagy(Poem.all, items:9)
   end
 
   # GET /poems/1
@@ -57,6 +57,7 @@ class PoemsController < ApplicationController
   # DELETE /poems/1
   # DELETE /poems/1.json
   def destroy
+    @poem.likes.clear
     @poem.destroy
     respond_to do |format|
       format.html { redirect_to poems_url, notice: 'Poem was successfully destroyed.' }
