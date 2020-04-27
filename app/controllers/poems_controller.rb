@@ -6,7 +6,7 @@ class PoemsController < ApplicationController
   # GET /poems
   # GET /poems.json
   def index
-    @poems = Poem.all
+    @pagy, @poems = pagy(Poem.all, items:10)
   end
 
   # GET /poems/1
