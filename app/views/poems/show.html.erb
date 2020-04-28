@@ -1,47 +1,62 @@
-<p id="notice"><%= notice %></p>
+<%= render "navbar" %>
+<div class="container">
+    <div style="margin-top:50px; text-align:center;">
+        <h1><%= @poem.title %></h1>
+    </div>
+    <hr>
+    <div style="text-align:center; margin-top:30px;">
+    <% if @poem.picture.attached? %>
+      <p>
+        <%= image_tag @poem.picture %>
+      </p>
+      <hr>
+    <% end %>
+    </div>
+    <div style="text-align:right; margin-top:30px; text-decoration:none;">
+        <% if @poem.user_id == current_user.id %>
+        <a href="/poems/<%= @poem.id %>/edit">
+            <span class="badge badge-warning">수정</span>
+        </a>
+        <a href="/poems/<%= @poem.id %>" data-confirm="정말로 삭제하시겠습니까?" rel="nofollow" data-method="delete" >
+            <span class="badge badge-danger">삭제</span>
+        </a>
+        <% end %>
+        <div style="margin-top:5px;">
+            <div><%= @poem.user.email %></div>
+            <div><%= @poem.created_at.to_s.split("+").first %></div>
+        </div>
+    </div>
+    <div style="margin-bottom:50px; margin-top:20px;">
+        <%= simple_format(@poem.body,{}, wrapper_tag: "h6") %>
+    </div>
+    <hr>
+    <div>
+      <p id="like_count">
+        <strong>좋아요 수</strong>
+        <span><%= @poem.liked_users.count %></span>
+      </p>
+    <% if user_signed_in? %>
+      <p id="like_heart">
+          <%= link_to "#{poem_liked_by_user?(@poem, current_user) ? "❤️":"🤍" }","/poems/#{@poem.id}/likes", method: :post, remote: true %>
+      </p>
+    <% else %>
+      <p>
+        <%= link_to "🤍","/poems/#{@poem.id}/likes", method: :post %>
+      </p>
+    <% end %>
+    </div>
+    <hr>
+    <div style="text-align:left; margin-top:10px;" >
+      <p>
+        <span>연도 : </span><%= @poem.year %><br>
+        <br><strong>시에 대한 설명</strong><br>
+        <br><%= @poem.description %><br>
+      </p>
+    </div>
+    <div style="margin-top:30px; text-align:right;">
+        <a href="/poems">
+            <button type="button" class="btn btn-dark">목록으로</button>
+        </a>
+    </div>
+</div>
 
-<% if @poem.picture.attached? %>
-  <p>
-    <%= image_tag @poem.picture %>
-  </p>
-<% end %>
-
-<p>
-  <strong>Title:</strong>
-  <%= @poem.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @poem.body %>
-</p>
-
-<p id="like_count">
-  <strong>Like:</strong>
-  <span><%= @poem.liked_users.count %></span>
-</p>
-
-<% if user_signed_in? %>
-  <p id="like_heart">
-      <%= link_to "#{poem_liked_by_user?(@poem, current_user) ? "❤️":"🤍" }","/poems/#{@poem.id}/likes", method: :post, remote: true %>
-  </p>
-<% else %>
-  <p>
-    <%= link_to "🤍","/poems/#{@poem.id}/likes", method: :post %>
-  </p>
-<% end %>
-
-
-<p>
-  <strong>Year:</strong>
-  <%= @poem.year %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <br>
-  <%= @poem.description %>
-</p>
-
-<%= link_to '수정하기', edit_poem_path(@poem) %> |
-<%= link_to '목록으로', poems_path %>
