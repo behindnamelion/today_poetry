@@ -13,13 +13,15 @@
     <% end %>
     </div>
     <div style="text-align:right; margin-top:30px; text-decoration:none;">
-        <% if @poem.user_id == current_user.id %>
-        <a href="/poems/<%= @poem.id %>/edit">
-            <span class="badge badge-warning">수정</span>
-        </a>
-        <a href="/poems/<%= @poem.id %>" data-confirm="정말로 삭제하시겠습니까?" rel="nofollow" data-method="delete" >
-            <span class="badge badge-danger">삭제</span>
-        </a>
+        <% if user_signed_in? %>
+          <% if @poem.user_id == current_user.id %>
+          <a href="/poems/<%= @poem.id %>/edit">
+              <span class="badge badge-warning">수정</span>
+          </a>
+          <a href="/poems/<%= @poem.id %>" data-confirm="정말로 삭제하시겠습니까?" rel="nofollow" data-method="delete" >
+              <span class="badge badge-danger">삭제</span>
+          </a>
+          <% end %>
         <% end %>
         <div style="margin-top:5px;">
             <div><%= @poem.user.email %></div>
