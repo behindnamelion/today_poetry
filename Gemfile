@@ -69,3 +69,7 @@ gem 'jquery-rails'
 gem 'pagy'
 # pg is for PostgreSQL database interface
 gem 'pg'
+
+# This for window platform
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem 'coffee-script-source', '1.8.0' if Gem.win_platform?
