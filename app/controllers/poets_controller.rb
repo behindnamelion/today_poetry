@@ -1,5 +1,7 @@
 class PoetsController < ApplicationController
   before_action :set_poet, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :require_permission, only: [:edit, :update, :destroy]
 
   # GET /poets
   # GET /poets.json
@@ -25,6 +27,7 @@ class PoetsController < ApplicationController
   # POST /poets.json
   def create
     @poet = Poet.new(poet_params)
+    @poet.user_id = current_user.id
 
     respond_to do |format|
       if @poet.save
@@ -70,5 +73,11 @@ class PoetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def poet_params
       params.require(:poet).permit(:name, :birthplace, :birthyear, :description)
+    end
+
+    def require_permission
+      if current_user != @poet.user
+        redirect_to root_path, notice: 'You don\'t have a permission for this post'
+      end
     end
 end

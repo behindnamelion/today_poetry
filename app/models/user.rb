@@ -6,4 +6,5 @@ class User < ApplicationRecord
          has_many :poems
          has_many :likes
          has_many :liked_poems, through: :likes, source: :poem
+         has_many :poets
 end
