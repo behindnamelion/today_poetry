@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @poet.name %>
+</p>
+
+<p>
+  <strong>Birthplace:</strong>
+  <%= @poet.birthplace %>
+</p>
+
+<p>
+  <strong>Birthyear:</strong>
+  <%= @poet.birthyear %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @poet.description %>
+</p>
+
+<%= link_to 'Edit', edit_poet_path(@poet) %> |
+<%= link_to 'Back', poets_path %>
