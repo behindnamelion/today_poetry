@@ -1,3 +1,9 @@
+<% if @poet.portrait.attached? %>
+  <p>
+    <%= image_tag @poet.portrait %>
+  </p>
+<% end %>
+
 <p>
   <strong>Name:</strong>
   <%= @poet.name %>

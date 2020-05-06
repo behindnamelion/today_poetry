@@ -72,7 +72,7 @@ class PoetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def poet_params
-      params.require(:poet).permit(:name, :birthplace, :birthyear, :description)
+      params.require(:poet).permit(:name, :birthplace, :birthyear, :description, :portrait)
     end
 
     def require_permission
