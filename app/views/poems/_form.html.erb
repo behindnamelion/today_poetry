@@ -17,6 +17,11 @@
   </div>
 
   <div class="field form-group">
+    <%= form.label :poet, class: "col-form-label" %>    
+    <%= form.text_field :poet, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
     <%= form.label :body, class: "col-form-label" %>
     <%= form.text_area :body, class: "form-control", rows: "15" %>
   </div>
