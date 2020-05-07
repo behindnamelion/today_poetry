@@ -3,6 +3,16 @@ class PoetsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :require_permission, only: [:edit, :update, :destroy]
 
+  def search
+    if params[:search].blank?
+      redirect_to(poets_path, notice: "검색란이 비었습니다.") and return      
+    else
+      @parameter = params[:search].downcase
+      @matchPoets = Poet.all.where("lower(name) LIKE ?", "%#{@parameter}%")      
+      @matchPoems = Poem.all.where("lower(title) LIKE ?", "%#{@parameter}%")
+    end
+  end
+
   # GET /poets
   # GET /poets.json
   def index

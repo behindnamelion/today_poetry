@@ -1,0 +1,22 @@
+<h3>검색 결과</h3>
+
+<h4>검색된 시인</h4>
+<% if @matchPoets.length > 0 %>
+    <% @matchPoets.each do |poet| %>
+
+    <%= link_to poet.name, poet_path(poet.id) %>
+    <% end %>  
+<% else %>
+  검색되는 시인이 없습니다. 
+<% end %>
+
+<hr>
+
+<h4>검색된 시인의 시 또는 검색된 시</h4>
+<% if @matchPoems.length > 0 %>
+    <% @matchPoems.each do |poem| %>    
+    <%= link_to poem.title, poem_path(poem.id) %>
+    <% end %>  
+<% else %>
+  검색되는 시가 없습니다. 
+<% end %>

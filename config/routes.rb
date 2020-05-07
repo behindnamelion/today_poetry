@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :poems
   
+  get '/search' => 'poets#search'
   post 'poems/:poem_id/likes' => 'likes#create'
   
   root 'poets#index'
