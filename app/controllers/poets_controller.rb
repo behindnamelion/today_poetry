@@ -8,7 +8,7 @@ class PoetsController < ApplicationController
       redirect_to(request.referrer, notice: "검색란이 비었습니다.") and return
     else
       @parameter = params[:search].downcase
-      @matchPoets = Poet.all.where("lower(name) LIKE ?", "%#{@parameter}%")      
+      @matchPoets = Poet.all.where("lower(name) LIKE ?", "%#{@parameter}%")
       @matchPoems = Poem.all.where("lower(title) LIKE ?", "%#{@parameter}%")
     end
   end
