@@ -26,6 +26,13 @@ class PoemsController < ApplicationController
   # POST /poems
   # POST /poems.json
   def create
+    
+    if poem_params[:title].empty?
+      redirect_to(request.referrer, notice: "제목이 비었습니다.") and return
+    elsif  poem_params[:body].empty?
+      redirect_to(request.referrer, notice: "본문이 비었습니다.") and return
+    end
+
     @poem = Poem.new(poem_params)
     @poem.user_id = current_user.id
 
@@ -37,7 +44,7 @@ class PoemsController < ApplicationController
         format.html { render :new }
         format.json { render json: @poem.errors, status: :unprocessable_entity }
       end
-    end
+    end    
   end
 
   # PATCH/PUT /poems/1

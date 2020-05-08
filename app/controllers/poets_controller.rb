@@ -5,7 +5,7 @@ class PoetsController < ApplicationController
 
   def search
     if params[:search].blank?
-      redirect_to(poets_path, notice: "검색란이 비었습니다.") and return      
+      redirect_to(request.referrer, notice: "검색란이 비었습니다.") and return
     else
       @parameter = params[:search].downcase
       @matchPoets = Poet.all.where("lower(name) LIKE ?", "%#{@parameter}%")      
