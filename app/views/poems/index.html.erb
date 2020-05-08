@@ -2,7 +2,7 @@
   <h1 style="margin-top:15px;">詩의 바다</h1>
       <div class="row">
           <% @poems.each do |poem| %>
-                  <div class="card col-md-4" style="margin-left:15px; margin-top:15px;">
+                  <div class="card col-md-4 card-square">
                     <a href="<%= poem_path(poem) %>" style="color: #000000; text-decoration:none;">
                       <div class="card-body">
                         <div style="text-align:center;">

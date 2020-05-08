@@ -11,32 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :portrait %>
-    <%= form.file_field :portrait %>
+  <div class="field form-group">
+    <%= form.label :portrait, class: "col-form-label" %>
+    <%= form.file_field :portrait, class: "form-control-file" %>
   </div>
   
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field form-group">
+    <%= form.label :name, class: "col-form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :birthplace %>
-    <%= form.text_field :birthplace %>
+  <div class="field form-group">
+    <%= form.label :birthplace, class: "col-form-label" %>
+    <%= form.text_field :birthplace, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :birthyear %>
-    <%= form.number_field :birthyear %>
+  <div class="field form-group">
+    <%= form.label :birthyear, class: "col-form-label" %>
+    <%= form.number_field :birthyear, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="field form-group">
+    <%= form.label :description, class: "col-form-label" %>
+    <%= form.text_area :description, class: "form-control", rows: "15" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

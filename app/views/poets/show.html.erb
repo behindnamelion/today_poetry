@@ -1,28 +1,53 @@
-<% if @poet.portrait.attached? %>
-  <p>
-    <%= image_tag @poet.portrait %>
-  </p>
-<% end %>
+<div class="container">
+    <div class="poem-title">
+      <%= @poet.name %>
+    </div>    
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+            <div class="poem-picture poet-portrait-box" >
+            <% if @poet.portrait.attached? %>
+                <%= image_tag @poet.portrait, class: "poet-portrait" %>              
+            <% end %>
+            </div>
+            <div class="poem-web-info poet-birth-info">
+              <p>
+                <strong>출생지_</strong>
+                <%= @poet.birthplace %>
+              </p>
+              <p>
+                <strong>출생년도_</strong>
+                <%= @poet.birthyear %>
+              </p>
+            </div>
+      </div>
+      <div class="col-md-6">
+        <div class="poem-body">
+            <%= simple_format(@poet.description) %>
+        </div>
+        <div class="poem-web-info">
+          <% if user_signed_in? %>
+            <% if @poet.user_id == current_user.id %>
+            <a href="/poets/<%= @poet.id %>/edit">
+                <span class="badge badge-warning">수정</span>
+            </a>
+            <a href="/poets/<%= @poet.id %>" data-confirm="정말로 삭제하시겠습니까?" rel="nofollow" data-method="delete" >
+                <span class="badge badge-danger">삭제</span>
+            </a>
+            <% end %>
+          <% end %>
+          <div style="margin-top:5px;">
+              <div><%= @poet.user.email %></div>
+              <div><%= @poet.created_at.to_s.split("+").first %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>    
+    <div style="margin-top:30px; text-align:right;">
+        <a href="/poets">
+            <button type="button" class="btn btn-dark">목록으로</button>
+        </a>
+    </div>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @poet.name %>
-</p>
-
-<p>
-  <strong>Birthplace:</strong>
-  <%= @poet.birthplace %>
-</p>
-
-<p>
-  <strong>Birthyear:</strong>
-  <%= @poet.birthyear %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @poet.description %>
-</p>
-
-<%= link_to 'Edit', edit_poet_path(@poet) %> |
-<%= link_to 'Back', poets_path %>

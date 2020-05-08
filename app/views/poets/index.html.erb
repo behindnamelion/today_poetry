@@ -1,31 +1,48 @@
-<h1>Poets</h1>
+<div class="container">
+  <h1 style="margin-top:15px;">詩人들</h1>
+      <div class="row">
+          <% @poets.each do |poet| %>
+                  <div class="card col-md-4 card-square">
+                    <a href="<%= poet_path(poet) %>" style="color: #000000; text-decoration:none;">
+                      <div class="card-body">
+                        <div style="text-align:center;">
+                          <h4 class="card-title"><%= poet.name %></h5>
+                        <hr>
+                        <p class="card-text">
+                        <% if poet.description != nil %>
+                        <%= poet.description.split[0...30].join(' ') %>...
+                        <% end %>
+                        </p>
+                        </div>
+                    </a><br>
+                        <div style="text-align:center; text-decoration:none;">
+                            <% if user_signed_in? %>
+                                <% if poet.user_id == current_user.id %>
+                                  <a href="<%= edit_poet_path(poet) %>" >
+                                    <span class="badge badge-warning">수정</span>
+                                  </a>
+                                  <a data-confirm="정말로 삭제하시겠습니까?" rel="nofollow" data-method="delete" href="<%= poet_path(poet) %>">
+                                    <span class="badge badge-danger">삭제</span>
+                                  </a>
+                                <% end %>
+                            <% end %>
+                        </div>
+                      </div>
+                  </div>
+          <% end %>
+      </div>
+      <hr>
+      <div>
+        <%== pagy_bootstrap_nav(@pagy) %>
+        <script>
+            Pagy.init()
+        </script>
+      </div>
+      <div style="margin-top:30px; text-align:right;">
+        <a href="<%= new_poet_path %>">
+          <button type="button" class="btn btn-dark">새로 시인 기록하기</button>
+        </a>
+      </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Birthplace</th>
-      <th>Birthyear</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @poets.each do |poet| %>
-      <tr>
-        <td><%= poet.name %></td>
-        <td><%= poet.birthplace %></td>
-        <td><%= poet.birthyear %></td>
-        <td><%= poet.description %></td>
-        <td><%= link_to 'Show', poet %></td>
-        <td><%= link_to 'Edit', edit_poet_path(poet) %></td>
-        <td><%= link_to 'Destroy', poet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Poet', new_poet_path %>

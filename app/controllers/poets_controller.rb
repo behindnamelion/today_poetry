@@ -15,8 +15,8 @@ class PoetsController < ApplicationController
 
   # GET /poets
   # GET /poets.json
-  def index
-    @poets = Poet.all
+  def index    
+    @pagy, @poets = pagy(Poet.all, items: 9)
   end
 
   # GET /poets/1

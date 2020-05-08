@@ -92,6 +92,13 @@
 
 }
 
+
+.card-square {
+    margin-top:15px;    
+    margin-left: auto;
+    margin-right: auto;
+}
+
 //** POEM **//
 
 .poem-title {
@@ -130,3 +137,22 @@
     text-align: left; 
 
 }
+
+//** POET **//
+.poet-portrait-box{
+    width: 250px;
+    border: 5px solid black;    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.poet-portrait {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.poet-birth-info {
+    text-align: center;
+}
+
