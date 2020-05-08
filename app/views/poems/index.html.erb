@@ -2,16 +2,18 @@
   <h1 style="margin-top:15px;">詩의 바다</h1>
       <div class="row">
           <% @poems.each do |poem| %>
-                  <div class="card col-3" style="margin-left:15px; margin-top:15px;">
-                      <a href="<%= poem_path(poem) %>" style="color: #000000; text-decoration:none;">
-                        <div class="card-body">
-                          <div style="text-align:center;">
-                              <h4 class="card-title"><%= poem.title %></h5>
-                          </div>
-                          <hr>
-                          <p class="card-text"><%= poem.body.lines.first %></p>
-                      </a>
-                      <br>
+                  <div class="card col-md-4" style="margin-left:15px; margin-top:15px;">
+                    <a href="<%= poem_path(poem) %>" style="color: #000000; text-decoration:none;">
+                      <div class="card-body">
+                        <div style="text-align:center;">
+                          <h4 class="card-title"><%= poem.title %></h5>                        
+                        <hr>
+                        <p class="card-text">
+                        <%= poem.body.lines.first %><br> 
+                        <%= poem.body.lines.second %>
+                        </p>
+                        </div>
+                    </a><br>
                         <div style="text-align:center; text-decoration:none;">
                             <% if user_signed_in? %>
                                 <% if poem.user_id == current_user.id %>
@@ -24,7 +26,7 @@
                                 <% end %>
                             <% end %>
                         </div>
-                        </div>
+                      </div>
                   </div>
           <% end %>
       </div>
