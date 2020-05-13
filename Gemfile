@@ -74,5 +74,7 @@ gem 'pg'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'coffee-script-source', '1.8.0' if Gem.win_platform?
 
-#bootstrap
+# bootstrap
 gem 'bootstrap', '~> 4.4.1'
+# to fix bug
+gem 'mini_racer'
