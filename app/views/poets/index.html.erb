@@ -1,28 +1,27 @@
 <div class="container">
-  <h1 style="margin-top:15px;">詩의 바다</h1>
+  <h1 style="margin-top:15px;">詩人들</h1>
       <div class="row">
-          <% @poems.each do |poem| %>
+          <% @poets.each do |poet| %>
                   <div class="card col-md-4 card-square">
-                    <a href="<%= poem_path(poem) %>" style="color: #000000; text-decoration:none;">
+                    <a href="<%= poet_path(poet) %>" style="color: #000000; text-decoration:none;">
                       <div class="card-body">
                         <div style="text-align:center;">
-                          <h4 class="card-title"><%= poem.title %></h5>                        
+                          <h4 class="card-title"><%= poet.name %></h5>
                         <hr>
                         <p class="card-text">
-                        <% if poem.body != nil %>
-                        <%= poem.body.lines.first %><br> 
-                        <%= poem.body.lines.second %>  
+                        <% if poet.description != nil %>
+                        <%= poet.description.split[0...30].join(' ') %>...
                         <% end %>
                         </p>
                         </div>
                     </a><br>
                         <div style="text-align:center; text-decoration:none;">
                             <% if user_signed_in? %>
-                                <% if poem.user_id == current_user.id %>
-                                  <a href="<%= edit_poem_path(poem) %>" >
+                                <% if poet.user_id == current_user.id %>
+                                  <a href="<%= edit_poet_path(poet) %>" >
                                     <span class="badge badge-warning">수정</span>
                                   </a>
-                                  <a data-confirm="정말로 삭제하시겠습니까?" rel="nofollow" data-method="delete" href="<%= poem_path(poem) %>">
+                                  <a data-confirm="정말로 삭제하시겠습니까?" rel="nofollow" data-method="delete" href="<%= poet_path(poet) %>">
                                     <span class="badge badge-danger">삭제</span>
                                   </a>
                                 <% end %>
@@ -40,9 +39,10 @@
         </script>
       </div>
       <div style="margin-top:30px; text-align:right;">
-        <a href="<%= new_poem_path %>">
-          <button type="button" class="btn btn-dark">새로운 시 올리기</button>
+        <a href="<%= new_poet_path %>">
+          <button type="button" class="btn btn-dark">새로 시인 기록하기</button>
         </a>
       </div>
 </div>
+
 

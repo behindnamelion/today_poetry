@@ -1,10 +1,16 @@
-<%= render "navbar" %>
 <div class="container">
-    <div style="margin-top:50px; text-align:center;">
-        <h1><%= @poem.title %></h1>
+    <div class="poem-title">
+      <%= @poem.title %>
     </div>
+    <div class="poet-name">
+      <% if @poem.poet != nil %>
+      <%= @poem.poet.name %>
+      <% else %>
+      작자 미상
+      <% end %>
+    </div>    
     <hr>
-    <div style="text-align:center; margin-top:30px;">
+    <div class="poem-picture" >
     <% if @poem.picture.attached? %>
       <p>
         <%= image_tag @poem.picture %>
@@ -12,7 +18,7 @@
       <hr>
     <% end %>
     </div>
-    <div style="text-align:right; margin-top:30px; text-decoration:none;">
+    <div class="poem-web-info">
         <% if user_signed_in? %>
           <% if @poem.user_id == current_user.id %>
           <a href="/poems/<%= @poem.id %>/edit">
@@ -28,8 +34,8 @@
             <div><%= @poem.created_at.to_s.split("+").first %></div>
         </div>
     </div>
-    <div style="margin-bottom:50px; margin-top:20px;">
-        <%= simple_format(@poem.body,{}, wrapper_tag: "h6") %>
+    <div class="poem-body">
+        <%= simple_format(@poem.body) %>
     </div>
     <hr>
     <div>
@@ -48,16 +54,16 @@
     <% end %>
     </div>
     <hr>
-    <div style="text-align:left; margin-top:10px;" >
+    <div class="poem-description">
       <p>
         <span>연도 : </span><%= @poem.year %><br>
         <br><strong>시에 대한 설명</strong><br>
         <br><%= @poem.description %><br>
       </p>
     </div>
-    <div style="margin-top:30px; text-align:right;">
-        <a href="/poems">
-            <button type="button" class="btn btn-dark">목록으로</button>
+    <div class="go-back-btn">
+        <a href="#" onclick="history.go(-1)">
+            <button type="button" class="btn btn-dark">예전으로</button>
         </a>
     </div>
 </div>

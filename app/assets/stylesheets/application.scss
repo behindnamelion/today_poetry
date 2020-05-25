@@ -1,0 +1,162 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+ @import "bootstrap";
+
+
+//  COMMON
+.go-back-btn{
+    margin-top:30px; 
+    text-align:right;
+
+}
+
+// SECTION & INNER 
+.section {
+    position: relative;
+}
+
+.section .inner {
+    max-width: 980px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+// TODAYPOET
+.todaypoet {
+
+}
+
+.todaypoet-title {
+    font-size: 38px;
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 18px;
+
+}
+
+.todaypoet-description {
+    font-size: 26px;
+    font-weight: 300;
+    color: #767676;
+    line-height: 1.5;
+
+
+}
+
+
+//  VISUAL
+.section-visual {
+    background-image: url("home-image-poet-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center left;
+    background-size: cover;
+
+}
+
+.section-visual::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .3);
+
+}
+
+.section-visual .inner {    
+    padding: 160px 0;
+}
+
+.section-visual .todaypoet-title {
+    color: #FFF;
+    font-size: 54px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25), 
+                 0 1px 25px rgba(0, 0, 0, .75);
+
+}
+
+.section-visual .todaypoet-description {
+    color: #FFF;    
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .25), 
+                 0 1px 25px rgba(0, 0, 0, .75);
+
+}
+
+
+.card-square {
+    margin-top:15px;    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+//** POEM **//
+
+.poem-title {
+    font-size: 3em;
+    margin-top: 50px;
+    text-align: center;
+}
+
+
+.poet-name {
+    font-size: 1em;
+    margin-top: 25px;
+    text-align: right;
+}
+
+.poem-picture {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.poem-web-info {
+    margin-top: 30px;
+    text-align: right;
+    text-decoration: none;
+}
+
+.poem-body {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: large;
+    line-height: 1.7;
+}
+
+.poem-description {
+    margin-top: 10px;
+    text-align: left; 
+
+}
+
+//** POET **//
+.poet-portrait-box{
+    width: 250px;
+    border: 5px solid black;    
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.poet-portrait {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
+.poet-birth-info {
+    text-align: center;
+}
+

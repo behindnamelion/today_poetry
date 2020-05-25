@@ -29,3 +29,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Gemfile lock is different between c9 and window so excluded
+Gemfile.lock
+.vscode/

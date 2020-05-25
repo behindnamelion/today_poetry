@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
@@ -73,3 +73,8 @@ gem 'pg'
 # This for window platform
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'coffee-script-source', '1.8.0' if Gem.win_platform?
+
+# bootstrap
+gem 'bootstrap', '~> 4.4.1'
+# to fix bug
+gem 'mini_racer' if Gem.win_platform? == false
