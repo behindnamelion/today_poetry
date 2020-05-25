@@ -10,8 +10,16 @@ default: &default
   timeout: 5000
 
 development:
-  <<: *default
-  database: db/development.sqlite3
+  # <<: *default
+  # database: db/development.sqlite3
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  host: <%= Rails.application.credentials.production[:database][:host]%>
+  port: <%= Rails.application.credentials.production[:database][:port]%>
+  username: <%= Rails.application.credentials.production[:database][:username]%>
+  password: <%= Rails.application.credentials.production[:database][:password]%>
+  database: <%= Rails.application.credentials.production[:database][:database]%>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
