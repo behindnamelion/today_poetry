@@ -77,4 +77,4 @@ gem 'coffee-script-source', '1.8.0' if Gem.win_platform?
 # bootstrap
 gem 'bootstrap', '~> 4.4.1'
 # to fix bug
-gem 'mini_racer' if Gem.win_platform? == false
+# gem 'mini_racer' if Gem.win_platform? == false
