@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_05_07_132318) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -34,8 +37,8 @@ ActiveRecord::Schema.define(version: 2020_05_07_132318) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "poem_id"
+    t.bigint "user_id"
+    t.bigint "poem_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["poem_id"], name: "index_likes_on_poem_id"
@@ -49,8 +52,8 @@ ActiveRecord::Schema.define(version: 2020_05_07_132318) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "poet_id"
+    t.bigint "user_id"
+    t.bigint "poet_id"
     t.index ["poet_id"], name: "index_poems_on_poet_id"
     t.index ["user_id"], name: "index_poems_on_user_id"
   end
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 2020_05_07_132318) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_poets_on_user_id"
   end
 
@@ -78,4 +81,10 @@ ActiveRecord::Schema.define(version: 2020_05_07_132318) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "likes", "poems"
+  add_foreign_key "likes", "users"
+  add_foreign_key "poems", "poets"
+  add_foreign_key "poems", "users"
+  add_foreign_key "poets", "users"
 end
